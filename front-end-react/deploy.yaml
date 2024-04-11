@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end-react
+  labels:
+    app: front-end-react
+  namespace: microapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-end-react
+  template:
+    metadata:
+      labels:
+        app: front-end-react
+    spec:
+      containers:
+      - name: front-end-react
+        image: jesusptb/front-end-react:latest
+        ports:
+        - containerPort: 3000
