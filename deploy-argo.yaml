@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microapp
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/JesusPTB/Ynov-CICD-project.git
+    targetRevision: HEAD
+    path: deploy
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: microapp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
